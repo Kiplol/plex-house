@@ -1,10 +1,12 @@
 const express = require('express')
+const bodyParser = require("body-parser")
 const app = express()
 const port = 3000
 const sylph = 'http://47.156.149.100:18934'
 const plexToken = 'gkZp-GYsCatnMshA7JsM'
 
 app.use(express.static(__dirname + '/public'));
+app.use(bodyParser.json());
 app.set('views', __dirname + '/public/views');
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
