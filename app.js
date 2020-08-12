@@ -44,8 +44,8 @@ app.get('/', (req, res) => {
 })
 
 app.post('/plexhook/', (req, res) => {
-    console.log(JSON.stringify(req));
-    res()
+    console.log(req);
+    res.send()
 })
 
 function fitToDashboard(artURL) {
