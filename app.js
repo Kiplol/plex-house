@@ -1,12 +1,10 @@
 const express = require('express')
-const bodyParser = require("body-parser")
 const app = express()
 const port = 3000
 const sylph = 'http://47.156.149.100:18934'
 const plexToken = 'gkZp-GYsCatnMshA7JsM'
 
 app.use(express.static(__dirname + '/public'));
-app.use(bodyParser.json());
 app.set('views', __dirname + '/public/views');
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
@@ -45,8 +43,9 @@ app.get('/', (req, res) => {
   request(options, callback);
 })
 
-app.post('/plexhook', (req, res) => {
-  console.log(req) // Call your action on the request here
+app.post('/plexhook', (req, res, next) => {
+  var payload = JSON.parse(req.body.payload);
+  console.log('Got webhook for', payload.event);
   res.status(200).end() // Responding is important
 })
 
