@@ -44,7 +44,8 @@ app.get('/', (req, res) => {
 })
 
 app.post('/plexhook/', (req, res) => {
-    console.log(req);
+    var payload = JSON.parse(req);
+    console.log(payload);
     res.send()
 })
 
