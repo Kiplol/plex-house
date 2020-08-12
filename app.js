@@ -30,11 +30,18 @@ app.get('/', (req, res) => {
     var art = metadata["art"]
     var artURL = sylph + art + "?X-Plex-Token=gkZp-GYsCatnMshA7JsM"
     var title = metadata["title"]
-    // res.send("Watching " + title + "<br>Yay!<br><img src=\"" + artURL + "\">")
-    res.send("<img src=\"" + artURL + "\">")
+    res.send(fitToDashboard(artURL))
+    // res.send("<img src=\"" + artURL + "\">")
   }
   request(options, callback);
 })
+
+function fitToDashboard(artURL) {
+  var width = 900
+  var height = 1440
+  var style = "width:" + width + "px; height:" + height + "px;"
+  return "<img src=\"" + artURL + "\"style=\"" + style + "\">"
+}
 
 app.listen(process.env.PORT || port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
