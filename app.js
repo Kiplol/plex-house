@@ -30,8 +30,9 @@ app.get('/', (req, res) => {
     var art = metadata["art"]
     var artURL = sylph + art + "?X-Plex-Token=gkZp-GYsCatnMshA7JsM"
     var title = metadata["title"]
-    res.send(fitToDashboard(artURL))
+    // res.send(fitToDashboard(artURL))
     // res.send("<img src=\"" + artURL + "\">")
+    res.render('index.html')
   }
   request(options, callback);
 })
