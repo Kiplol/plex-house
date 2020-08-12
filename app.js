@@ -4,6 +4,11 @@ const port = 3000
 const sylph = 'http://47.156.149.100:18934'
 const plexToken = 'gkZp-GYsCatnMshA7JsM'
 
+app.use(express.static(__dirname + '/public'));
+app.set('views', __dirname + '/public/views');
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
+
 app.get('/', (req, res) => {
   //  res.send('Hello World!' + req)
 
@@ -30,9 +35,10 @@ app.get('/', (req, res) => {
     var art = metadata["art"]
     var artURL = sylph + art + "?X-Plex-Token=gkZp-GYsCatnMshA7JsM"
     var title = metadata["title"]
+    console.log(artURL);
     // res.send(fitToDashboard(artURL))
     // res.send("<img src=\"" + artURL + "\">")
-    res.render('index.html')
+    res.render('test.ejs', { art_url: artURL} );
   }
   request(options, callback);
 })
@@ -47,6 +53,3 @@ function fitToDashboard(artURL) {
 app.listen(process.env.PORT || port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
-
-// curl -H "X-Plex-Token: gkZp-GYsCatnMshA7JsM" 'http://sylph.local:32400/status/sessions'
-// curl -H "X-Plex-Token: gkZp-GYsCatnMshA7JsM" 'http://47.156.149.100:18934/status/sessions'
