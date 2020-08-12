@@ -46,7 +46,7 @@ app.get('/', (req, res) => {
 })
 
 app.post('/plexhook', (req, res) => {
-  console.log(req.body) // Call your action on the request here
+  console.log(req) // Call your action on the request here
   res.status(200).end() // Responding is important
 })
 
