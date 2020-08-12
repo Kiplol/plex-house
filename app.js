@@ -38,7 +38,7 @@ app.get('/', (req, res) => {
     console.log(artURL);
     // res.send(fitToDashboard(artURL))
     // res.send("<img src=\"" + artURL + "\">")
-    res.render('test.ejs', { art_url: artURL} );
+    res.render('test.ejs', { art_url: artURL, media_title: title} );
   }
   request(options, callback);
 })
