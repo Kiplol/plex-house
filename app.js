@@ -4,6 +4,9 @@ const port = 3000
 const sylph = 'http://47.156.149.100:18934'
 const plexToken = 'gkZp-GYsCatnMshA7JsM'
 
+var multer = require('multer');
+var upload = multer({ dest: '/tmp/' });
+
 app.use(express.static(__dirname + '/public'));
 app.set('views', __dirname + '/public/views');
 app.engine('html', require('ejs').renderFile);
@@ -43,7 +46,7 @@ app.get('/', (req, res) => {
   request(options, callback);
 })
 
-app.post('/plexhook', (req, res, next) => {
+app.post('/plexhook', upload.single('thumb'), (req, res, next) => {
   var payload = JSON.parse(req.body);
   console.log('Got webhook for', payload);
   res.status(200).end() // Responding is important
