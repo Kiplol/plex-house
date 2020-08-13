@@ -44,8 +44,8 @@ app.get('/', (req, res) => {
 })
 
 app.post('/plexhook', (req, res, next) => {
-  var payload = JSON.parse(req.payload);
-  console.log('Got webhook for', payload.event);
+  var payload = JSON.parse(req.body);
+  console.log('Got webhook for', payload);
   res.status(200).end() // Responding is important
 })
 
