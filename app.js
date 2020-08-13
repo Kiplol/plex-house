@@ -59,7 +59,7 @@ function metadataToViewOptions(metadata) {
     if (mediaType == "movie") {
         subtitle = metadata["tagline"] || metadata["year"] || ""
     } else if (mediaType == "episode") {
-        subtitle = metadata["parentTitle"] + " Episode " + (metadata[index] + 1)
+        subtitle = metadata["parentTitle"] + " Episode " + (metadata["index"] + 1)
     }
     return { art_url: artURL, media_title: title, media_subtitle: subtitle}
 }
