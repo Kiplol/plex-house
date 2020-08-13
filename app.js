@@ -12,6 +12,10 @@ app.set('views', __dirname + '/public/views');
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 
+app.listen(process.env.PORT || port, () => {
+  console.log(`Example app listening at http://localhost:${port}`)
+})
+
 app.get('/', (req, res) => {
   //  res.send('Hello World!' + req)
 
@@ -35,13 +39,7 @@ app.get('/', (req, res) => {
       return
     }
     var metadata = mediaContainer["Metadata"][0]
-    var art = metadata["art"]
-    var artURL = sylph + art + "?X-Plex-Token=gkZp-GYsCatnMshA7JsM"
-    var title = metadata["title"]
-    console.log(artURL);
-    // res.send(fitToDashboard(artURL))
-    // res.send("<img src=\"" + artURL + "\">")
-    res.render('test.ejs', { art_url: artURL, media_title: title} );
+    res.render('test.ejs',  metadataToViewOptions(metadata));
   }
   request(options, callback);
 })
@@ -52,13 +50,18 @@ app.post('/plexhook', upload.single('thumb'), (req, res, next) => {
   res.status(200).end() // Responding is important
 })
 
-function fitToDashboard(artURL) {
-  var width = 900
-  var height = 1440
-  var style = "width:" + width + "px; height:" + height + "px;"
-  return "<img src=\"" + artURL + "\"style=\"" + style + "\">"
+function metadataToViewOptions(metadata) {
+    var art = metadata["parentThumb"] || metadata["thumb"] || metadata["art"] || ""
+    var artURL = sylph + art + `?X-Plex-Token=${plexToken}`
+    var title = metadata["title"]
+    var mediaType = metadata["type"]
+    var subtitle = ""
+    if (mediaType == "movie") {
+        subtitle = metadata["tagline"] || metadata["year"] || ""
+    } else if (mediaType == "episode") {
+        subtitle = metadata["parentTitle"] + " Episode " + (metadata[index] + 1)
+    }
+    return { art_url: artURL, media_title: title, media_subtitle: subtitle}
 }
 
-app.listen(process.env.PORT || port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
-})
+
