@@ -47,7 +47,7 @@ app.get('/', (req, res) => {
 })
 
 app.post('/plexhook', upload.single('thumb'), (req, res, next) => {
-  var payload = JSON.parse(req.body);
+  var payload = JSON.parse(req.body.payload);
   console.log('Got webhook for', payload);
   res.status(200).end() // Responding is important
 })
