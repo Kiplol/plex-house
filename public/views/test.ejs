@@ -22,13 +22,15 @@
                 z-index: 100;
                 position: absolute;
             }
-            .bottomInfo{
+            .bottomInfoContainer{
                 width: 100%;
                 background-color: rgba(0, 0, 0, 0.8);
                 z-index: 110;
                 bottom: 0;
                 position:absolute;
-                padding: 20px;
+            }
+            .bottomInfo{
+                padding: 20px
             }
             h1 {
                 color: white;
@@ -43,13 +45,15 @@
     <body>
         <div class="fullscreen">
             <img class="artwork" src="<%= art_url %>"/>
-            <div class="bottomInfo">
-                <h1>
-                    <%= media_title %>
-                </h1>
-                <h2>
-                    <%= media_subtitle %>
-                </h2>
+            <div class="bottomInfoContainer">
+                <div class="bottomInfo">
+                    <h1>
+                        <%= media_title %>
+                    </h1>
+                    <h2>
+                        <%= media_subtitle %>
+                    </h2>
+                </div>
             </div>
         </div>
     </body>
