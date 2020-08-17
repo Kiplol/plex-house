@@ -39,6 +39,11 @@ app.get('/', (req, res) => {
       return
     }
     var metadata = mediaContainer["Metadata"][0]
+    var username = metadata["User"]["title"]
+    if (username != "ekipper") {
+        res.send()
+        return
+    }
     res.render('test.ejs',  metadataToViewOptions(metadata));
   }
   request(options, callback);
