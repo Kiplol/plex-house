@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const port = 3000
-const sylph = 'http://47.156.149.100:18934'
+const sylph = 'http://47.156.154.41:18934'
 const plexToken = 'gkZp-GYsCatnMshA7JsM'
 
 var multer = require('multer');
@@ -13,7 +13,7 @@ app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 
 app.listen(process.env.PORT || port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
+  console.log(`Plex House app listening at http://localhost:${port}`)
 })
 
 app.get('/', (req, res) => {
@@ -68,5 +68,3 @@ function metadataToViewOptions(metadata) {
     }
     return { art_url: artURL, media_title: title, media_subtitle: subtitle}
 }
-
-
