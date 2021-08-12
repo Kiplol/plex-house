@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const port = 3000
-const sylph = 'http://47.157.93.189:18934'
+const sylph = 'http://47.157.94.64:18934'
 const plexToken = 'gkZp-GYsCatnMshA7JsM'
 
 var multer = require('multer');
