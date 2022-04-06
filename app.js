@@ -57,7 +57,7 @@ app.post('/plexhook', upload.single('thumb'), (req, res, next) => {
 
 function metadataToViewOptions(metadata) {
     var art = metadata["parentThumb"] || metadata["thumb"] || metadata["art"] || ""
-    var artURL = sylph + art + `?X-Plex-Token=${plexToken}`
+    var artURL = sylph + art + `.png?X-Plex-Token=${plexToken}`
     var title = metadata["title"]
     var mediaType = metadata["type"]
     var subtitle = ""
