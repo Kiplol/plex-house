@@ -17,11 +17,9 @@ app.listen(process.env.PORT || port, () => {
 })
 
 app.get('/', (req, res) => {
-  //  res.send('Hello World!' + req)
-
   var request = require('request');
   var options = {
-    url: `${sylph}/status/sessions`,
+    url: `http://${sylph}/status/sessions`,
     method: 'GET',
     headers: {
       'X-Plex-Token': plexToken,
@@ -30,6 +28,7 @@ app.get('/', (req, res) => {
   };
 
   function callback(error, response, body) {
+    console.log(error);
     console.log(body);
     var info = JSON.parse(body)
     var mediaContainer = info["MediaContainer"]
